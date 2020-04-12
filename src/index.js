@@ -7,18 +7,19 @@ export default class Storage {
     if (!this.test_supported()) {
       console.warn('Storage not supported, falling back to dummy storage')
       const FAKE_STORAGE = {}
-      this._setItem = (key, value) => FAKE_STORAGE[key] = value
-      this._removeItem = key => delete FAKE_STORAGE[key]
-      this._getItem = key => FAKE_STORAGE[key]
-      this.has = this._hasOwnProperty = key => FAKE_STORAGE.hasOwnProperty(key)
+      this._setItem = (key, value) => (FAKE_STORAGE[key] = value)
+      this._removeItem = (key) => delete FAKE_STORAGE[key]
+      this._getItem = (key) => FAKE_STORAGE[key]
+      this.has = this._hasOwnProperty = (key) =>
+        FAKE_STORAGE.hasOwnProperty(key)
     }
     this.times = this.get(this.META + 'times') || {}
     this.keys = this.get(this.META + 'keys') || []
   }
 
-  _ = key => this.PREFIX + key
+  _ = (key) => this.PREFIX + key
   _removeItem = (key) => localStorage.removeItem(this._(key))
-  _hasOwnProperty= (key) => localStorage.hasOwnProperty(this._(key))
+  _hasOwnProperty = (key) => localStorage.hasOwnProperty(this._(key))
   _getItem(key) {
     if (this.__CACHE[key] === undefined) {
       this.__CACHE[key] = localStorage.getItem(this._(key))
@@ -36,8 +37,9 @@ export default class Storage {
     }
   }
 
-  update = data => Object.entries(data).forEach(([key, value]) => this.set(key, value))
-  has = key => this.keys.indexOf(key) !== -1
+  update = (data) =>
+    Object.entries(data).forEach(([key, value]) => this.set(key, value))
+  has = (key) => this.keys.indexOf(key) !== -1
   list = () => this.keys.map(this.get)
 
   set(key, value) {
@@ -58,7 +60,7 @@ export default class Storage {
   remove(key) {
     // note, removing a key will revert to default (if present), not undefined
     this._removeItem(key)
-    this.keys = this.keys.filter(k => k !== key)
+    this.keys = this.keys.filter((k) => k !== key)
     delete this.times[key]
     this._save()
   }
