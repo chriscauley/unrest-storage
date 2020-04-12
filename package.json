@@ -1,0 +1,17 @@
+{
+  "name": "@unrest/storage",
+  "version": "0.1",
+  "main": "dist.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src/index.js --out-file dist.js",
+    "test": "yarn jest"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
+    "jest": "^25.3.0"
+  }
+}
