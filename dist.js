@@ -31,6 +31,8 @@ var Storage = /*#__PURE__*/function () {
 
     _classCallCheck(this, Storage);
 
+    _defineProperty(this, "GLOBAL_PREFIX", '$_$');
+
     _defineProperty(this, "_", function (key) {
       return _this.PREFIX + key;
     });
@@ -72,8 +74,8 @@ var Storage = /*#__PURE__*/function () {
       return _this.keys.map(_this.get);
     });
 
-    this.PREFIX = prefix;
-    this.META = 'META/';
+    this.PREFIX = this.GLOBAL_PREFIX + prefix;
+    this.META = '__META/';
     this.__CACHE = {};
 
     if (!this.test_supported()) {
@@ -170,7 +172,7 @@ var Storage = /*#__PURE__*/function () {
         localStorage.removeItem(rando);
         return true;
       } catch (e) {
-        console.warn('No local storage found. Falling back.');
+        return false;
       }
     }
   }]);

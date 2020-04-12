@@ -1,7 +1,8 @@
 export default class Storage {
+  GLOBAL_PREFIX = '$_$'
   constructor(prefix) {
-    this.PREFIX = prefix
-    this.META = 'META/'
+    this.PREFIX = this.GLOBAL_PREFIX + prefix
+    this.META = '__META/'
     this.__CACHE = {}
     if (!this.test_supported()) {
       console.warn('Storage not supported, falling back to dummy storage')
