@@ -1,12 +1,17 @@
 {
   "name": "@unrest/storage",
-  "version": "0.1",
+  "version": "0.1.0",
   "main": "dist.js",
   "license": "MIT",
   "scripts": {
     "build": "babel src/index.js --out-file dist.js",
     "lint": "eslint src/index.js __tests__/index.js",
     "test": "yarn jest"
+  },
+  "author": "chriscauley",
+  "repository": {
+    "type": "git",
+    "url": "github.com/chriscauley/unrest-storage"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
